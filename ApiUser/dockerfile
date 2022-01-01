@@ -1,0 +1,25 @@
+FROM openjdk:latest
+VOLUME /tmp 
+ENV login.url.path=/api-user/user/login
+ENV public.url=/user/login,/user/register,/user/check,/actuator/**,/user/find/**
+ENV logging.level.com.learning.service.IRoleServiceClient=DEBUG
+ENV feign.client.config.default.connectTimeout=1000
+ENV feign.client.config.default.readTimeout=1000
+ENV logging.file.name=api-user.log
+ENV gateway.ip=192.168.43.1
+ENV jwt.jwtkeysecret='@He5&85*%6$L$%4RD%'
+ENV jwt.expiration_time=432000000
+ENV server.port=8888
+
+ENV spring.datasource.url=jdbc:mysql://host.docker.internal:3306/BookLibraryDB?createDatabaseIfNotExist=true
+ENV spring.datasource.username=root
+ENV spring.datasource.password=
+ENV spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+ENV spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL55Dialect
+ENV spring.jpa.generate-ddl=true
+ENV spring.jpa.hibernate.ddl-auto=update
+ENV eureka.client.serviceUrl.defaultZone=http://ayoub:ayoub123456passEurek@host.docker.internal:8761/eureka
+ENV spring.application.name=api-user
+ENV spring.rabbitmq.host=host.docker.internal
+COPY target/BookLibraryApiUser-0.0.1-SNAPSHOT.jar ApiUser.jar 
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","ApiUser.jar"] 
