@@ -61,6 +61,13 @@ public class BookLibraryApiUserApplication {
 	Logger.Level feignLoggerLover() {
 		return Logger.Level.FULL;
 	}
+	
+	/*
+	@Bean
+	public FeignErrorDecoder getFeignErrorDecoder()
+	{
+		return new FeignErrorDecoder();
+	} */
 
 	@Bean
 	public Throwable getThrowable() {

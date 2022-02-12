@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.learning.model.entity.Role;
 
-@FeignClient(name = "api-role",fallbackFactory = RoleSessionClientFallbackFactory.class)
+//@FeignClient(name = "api-role",fallbackFactory = RoleSessionClientFallbackFactory.class)
 public interface RoleSessionClient {
 
 	@GetMapping("/role/{id}")

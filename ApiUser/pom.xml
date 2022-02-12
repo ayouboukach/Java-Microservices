@@ -85,7 +85,7 @@
 		<dependency>
 			<groupId>jakarta.validation</groupId>
 			<artifactId>jakarta.validation-api</artifactId>
-			<version>2.0.1</version><!--$NO-MVN-MAN-VER$-->
+			<version>2.0.1</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 		<dependency>
 			<groupId>com.jcraft</groupId>
@@ -122,16 +122,23 @@
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 
+		<!-- <dependency> <groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-circuitbreaker-resilience4j 
+			</artifactId> </dependency> <dependency> <groupId>io.github.resilience4j</groupId> 
+			<artifactId>resilience4j-feign</artifactId> <version>0.16.0</version> </dependency> -->
+
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-circuitbreaker-resilience4j
-			</artifactId>
+			<groupId>io.github.resilience4j</groupId>
+			<artifactId>resilience4j-core</artifactId>
+			<version>1.7.0</version>
 		</dependency>
 		<dependency>
 			<groupId>io.github.resilience4j</groupId>
-			<artifactId>resilience4j-feign</artifactId>
-			<version>0.16.0</version><!--$NO-MVN-MAN-VER$-->
+			<artifactId>resilience4j-spring-boot2</artifactId>
+			<version>1.7.0</version>
 		</dependency>
+
+
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-sleuth</artifactId>

@@ -1,11 +1,25 @@
 package com.learning.service.impl;
 
 
-import static com.learning.constant.FileConstant.*;
-import static com.learning.constant.UserSeviceImplConstant.*;
-import static org.apache.commons.lang3.StringUtils.EMPTY;
+import static com.learning.constant.FileConstant.DEFAULT_USER_IMAGE_PATH;
+import static com.learning.constant.FileConstant.DIRECTORY_CREATED;
+import static com.learning.constant.FileConstant.DOT;
+import static com.learning.constant.FileConstant.FILE_SAVED_IN_FILE_SYSTEM;
+import static com.learning.constant.FileConstant.FORWARD_SLASH;
+import static com.learning.constant.FileConstant.JPG_EXTENSION;
+import static com.learning.constant.FileConstant.NOT_AN_IMAGE_FILE;
+import static com.learning.constant.FileConstant.USER_FOLDER;
+import static com.learning.constant.FileConstant.USER_IMAGE_PATH;
+import static com.learning.constant.UserSeviceImplConstant.EMAIL_ALREADY_EXISTS;
+import static com.learning.constant.UserSeviceImplConstant.FOUND_USER_BY_USERNAME;
+import static com.learning.constant.UserSeviceImplConstant.NO_USER_FOUND_BY_EMAIL;
+import static com.learning.constant.UserSeviceImplConstant.NO_USER_FOUND_BY_USERNAME;
+import static com.learning.constant.UserSeviceImplConstant.USERNAME_ALREADY_EXISTS;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
-import static org.springframework.http.MediaType.*;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+import static org.springframework.http.MediaType.IMAGE_GIF_VALUE;
+import static org.springframework.http.MediaType.IMAGE_JPEG_VALUE;
+import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,7 +63,6 @@ import com.learning.repository.IUserRepository;
 import com.learning.security.UserPrincipal;
 import com.learning.service.IRoleServiceClient;
 import com.learning.service.IUserService;
-import com.learning.service.RoleSessionClient;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -66,7 +79,7 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 	private final LoginAttemptService loginAttemptService;
 //	private final EmailService emailService;
 	private final IUserRemovedRepository userRemovedRepository;
-	private final RoleSessionClient roleServiceClient;
+	private final IRoleServiceClient roleServiceClient;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
