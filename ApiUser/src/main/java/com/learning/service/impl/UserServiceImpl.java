@@ -49,6 +49,8 @@ import com.learning.repository.IUserRepository;
 import com.learning.security.UserPrincipal;
 import com.learning.service.IRoleServiceClient;
 import com.learning.service.IUserService;
+import com.learning.service.RoleSessionClient;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -64,7 +66,7 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 	private final LoginAttemptService loginAttemptService;
 //	private final EmailService emailService;
 	private final IUserRemovedRepository userRemovedRepository;
-	private final IRoleServiceClient roleServiceClient;
+	private final RoleSessionClient roleServiceClient;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

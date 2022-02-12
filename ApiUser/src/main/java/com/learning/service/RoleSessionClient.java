@@ -6,12 +6,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.learning.model.entity.Role;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+@FeignClient(name = "api-role",fallbackFactory = RoleSessionClientFallbackFactory.class)
+public interface RoleSessionClient {
 
-//@FeignClient(name = "api-role", configuration = RoleClientConfiguration.class)
-public interface IRoleServiceClient {
-
-	@CircuitBreaker(name = "api-role")
 	@GetMapping("/role/{id}")
 	public Role getRole(@PathVariable String id);
-} 
+}
