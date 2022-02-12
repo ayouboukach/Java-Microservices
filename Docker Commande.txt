@@ -1,0 +1,56 @@
+docker container
+docker compose
+docker swarm
+docker image
+
+docker images
+docker build --tag=ayouboukach/api-role-app:v2 --force-rm=true .
+docker run -d -p 8081:8081 ayouboukach/api-role-app:v2 --name=apirolev2
+docker start apirolev2
+docker logs apirolev2
+docker stop apirolev2
+docker rm -f  `4e5f641a687a 9b312164ca93 fc2e41d49f4b 8ef077558d0e`
+docker image rm jamtur01/static_web
+docker b379182ea4be name apirole
+docker start b379182ea4be --name=apirole
+docker history d416ea0d701e
+docker push
+
+docker run -i -t d416ea0d701e
+docker attach apirolecontainer
+docker run --name  deamon_name -d ayouboukach/api-role-app -c "while true; do echo hello world; sleep 1; done"
+docker logs -ft deamon_name
+docker pull ubuntu/bin/sh
+docker top daemon_dwayne
+docker stats daemon_dave
+docker inspect daemon_alice
+docker inspect --format='{{.State.Running}}' daemon_alice
+docker exec -t -i daemon_alice /bin/bash =  root@9b312164ca93:/#
+docker rm -f  `4e5f641a687a 8ef077558d0e`
+docker history [IMAGE_ID]
+docker run -d -p 8081:8081  --name apirole 33d2b7ef5f0d nginx -g "daemon off;"
+docker ps -l =last lanched
+
+
+docker run -i -t d416ea0d701e
+docker run -p 8081:8081 -e "server.port=8081" -e "spring.datasource.url=jdbc:mysql://host.docker.internal:3306/BookLibraryDB?createDatabaseIfNotExist=true" -e "spring.datasource.username=root" -e "spring.datasource.password=" -e "spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver" -e "spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL55Dialect" -e "spring.jpa.generate-ddl=true" -e "spring.jpa.hibernate.ddl-auto = update" -e "eureka.client.serviceUrl.defaultZone=http://ayoub:ayoub123456passEurek@host.docker.internal:8761/eureka" -e "spring.application.name=api-role" -e "spring.rabbitmq.host=host.docker.internal" d416ea0d701e
+docker rm  876974117f6c -f
+docker ps --format
+docker stop aiprolecontainer
+docker attach apirolecontainer
+docker run --name  deamon_name -d ayouboukach/api-role-app -c "while true; do echo hello world; sleep 1; done"
+docker logs daemon_name
+docker pull ubuntu/bin/sh
+docker run --log-driver="syslog" --name daemon_dwayne -d ubuntu /bin/sh -c "while true; do echo hello world; sleep 1; done"
+docker top daemon_dwayne
+docker stats daemon_dave daemon_dwayne
+docker exec -d daemon-dave touch /etc/new_config_file
+docker inspect --format='{{.state.running}}' daemon_alice
+docker inspect --format='{{.NetworkSettings.IPAddress}}' daemon_alice
+docker inspect --format='{{.Name}} {{.NetworkSettings.IPAddress}}' \daemon_alice apirolecontainer
+docker rm `docker ps -q` -f
+docker login--username=ayouboukach
+docker logout
+docker run -d -p 8012:8012 -e "spring.rabbitmq.host=172.17.0.2" ayouboukach/config-server-app
+docker pull openjdk:11
+docker search openjdk
