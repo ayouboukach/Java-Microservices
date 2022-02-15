@@ -56,11 +56,14 @@ import com.learning.security.UserPrincipal;
 import com.learning.security.jwt.JwtTokenProvider;
 import com.learning.service.IUserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(path = { "/", "/user" })
 @RequiredArgsConstructor
+@Tag(name = "User Controller", description = "This REST controller provide services to manage users in the User Tracker application") 
 public class UserResource extends ExceptionHandling {
 
 	private static final String USER_ID = "USER-ID";
@@ -77,6 +80,7 @@ public class UserResource extends ExceptionHandling {
 	}
 
 	@PostMapping("/login")
+	@Operation(summary = "Provides Login User To Generate New JWT")
 	public ResponseEntity<User> login(@Valid @RequestBody UserLoginRequestModel user) {
 		authenticate(user.getUsername(), user.getPassword());
 		User loginUser = userService.findUserByUsername(user.getUsername());
@@ -86,6 +90,7 @@ public class UserResource extends ExceptionHandling {
 	}
 
 	@PostMapping("/register")
+	@Operation(summary = "Provides Registration Service New User")
 	public ResponseEntity<HttpResponse> register(@Valid @RequestBody UserRegisterRequestModel userRequestModel)
 			throws UserNotFoundException, UsernameExistException, EmailExistException, AddressException,
 			MessagingException {
@@ -96,6 +101,7 @@ public class UserResource extends ExceptionHandling {
 	}
 
 	@PostMapping("/add")
+	@Operation(summary = "Provides Add New User In System")
 	public ResponseEntity<User> addNewUser(@RequestParam("firstname") String firstname,
 			@RequestParam("lastname") String lastname, @RequestParam("username") String username,
 			@RequestParam("email") String email, @RequestParam("role") String role,
@@ -109,6 +115,7 @@ public class UserResource extends ExceptionHandling {
 	}
 
 	@PutMapping("/update")
+	@Operation(summary = "Provides Updating User Already in System")
 	public ResponseEntity<User> update(@RequestParam("currentUsername") String currentUsername,
 			@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname,
 			@RequestParam("username") String username, @RequestParam("email") String email,
@@ -123,6 +130,7 @@ public class UserResource extends ExceptionHandling {
 	}
 
 	@GetMapping("/find/{username}")
+	@Operation(summary = "This Path can be using to finding a user in system")
 	public ResponseEntity<User> getUser(@PathVariable("username") String username) throws UserNotFoundException {
 		User user = userService.findUserByUsername(username);
 		if (user == null) {
@@ -132,12 +140,14 @@ public class UserResource extends ExceptionHandling {
 	}
 
 	@GetMapping("/list")
+	@Operation(summary = "This path getting all user in system")
 	public ResponseEntity<HttpResponse> getAllUsers() {
 		List<User> users = userService.getUsers();
 		return response(OK, "Users retrieved", Map.of("Users", users));
 	}
 
 	@GetMapping("/resetpassword/{email}")
+	@Operation(summary = "This Method supportting to reset password")
 	public ResponseEntity<HttpResponse> resetPassword(@PathVariable("email") String email)
 			throws MessagingException, EmailNotFoundException {
 		userService.resetPassword(email);
@@ -148,6 +158,7 @@ public class UserResource extends ExceptionHandling {
 	@PreAuthorize("hasAnyAuthority('user:delete')")
 //	@PreAuthorize("principal==#userid")
 //	@PreAuthorize("denyAll")
+	@Operation(summary = "Provides Deleting User Already exist in System")
 	public ResponseEntity<HttpResponse> deleteUser(@PathVariable("username") String username)
 			throws IOException, UserNotFoundException {
 		userService.deleteUser(StringUtils.strip(username));
@@ -155,6 +166,7 @@ public class UserResource extends ExceptionHandling {
 	}
 
 	@PutMapping("/updateProfileImage")
+	@Operation(summary = "Provides Updating User image")
 	public ResponseEntity<User> updateProfileImage(@RequestParam("username") String username,
 			@RequestParam(value = "profileImage") MultipartFile profileImage) throws UserNotFoundException,
 			UsernameExistException, EmailExistException, IOException, NotAnImageFileException {
@@ -162,12 +174,14 @@ public class UserResource extends ExceptionHandling {
 		return new ResponseEntity<>(user, OK);
 	}
 
+	@Operation(summary = "This path getting user image by username and filename")
 	@GetMapping(path = "/image/{username}/{filename}", produces = IMAGE_JPEG_VALUE)
 	public byte[] getProfileImage(@PathVariable("username") String username, @PathVariable("filename") String filename)
 			throws IOException {
 		return Files.readAllBytes(Paths.get(USER_FOLDER + username + FORWARD_SLASH + filename));
 	}
 
+	@Operation(summary = "This path getting temporary user image")
 	@GetMapping(path = "/image/profile/{username}", produces = IMAGE_JPEG_VALUE)
 	public byte[] getTempProfileImage(@PathVariable("username") String username) throws IOException {
 		URL url = new URL(TEMP_PROFILE_IMAGE_BASE_URL + username);

@@ -1,8 +1,5 @@
 package com.learning.service;
 
-import java.util.function.BiConsumer;
-
-import org.bouncycastle.jcajce.provider.asymmetric.EC;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
