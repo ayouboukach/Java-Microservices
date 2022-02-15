@@ -6,6 +6,7 @@ docker image
 docker images
 docker build --tag=ayouboukach/api-role-app:v2 --force-rm=true .
 docker run -d -p 8081:8081 ayouboukach/api-role-app:v2 --name=apirolev2
+docker run -d -p 8081:8081 -e "spring.profiles.active=production" ayouboukach/api-role-app:v2 --name=apirolev2
 docker start apirolev2
 docker logs apirolev2
 docker stop apirolev2
